@@ -1,0 +1,33 @@
+{
+  "name": "ELA",
+  "version": "1.0.0",
+  "description": "Embedded Linear Algebra library with error handling",
+  "keywords": [
+    "linear-algebra",
+    "vector",
+    "matrix",
+    "embedded",
+    "geometry",
+    "esp32",
+    "error-handling"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JamahaW/ELA.git"
+  },
+  "authors": [
+    {
+      "name": "JamahaW",
+      "email": "kiraflux@duck.com"
+    }
+  ],
+  "license": "MIT",
+  "frameworks": "*",
+  "platforms": "*",
+  "export": {
+    "include": "src"
+  },
+  "dependencies": {
+    "Rustify": "https://github.com/JamahaW/Rustify-Lib.git"
+  }
+}
