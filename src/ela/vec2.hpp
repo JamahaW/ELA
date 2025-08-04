@@ -1,24 +1,22 @@
 #pragma once
 
 #include <cmath>
-#include <type_traits>
-#include <rs/Option.hpp>  // Подключение библиотеки обработки ошибок
+#include <rs/Option.hpp>
 
 
 namespace ela {
 
-template<typename T>
-struct vec2 {
+template<typename T> struct vec2 {
 
     using Value = T;
 
     T x, y;
 
     vec2() :
-        x(0), y(0) {}
+        x{0}, y{0} {}
 
     vec2(T x, T y) :
-        x(x), y(y) {}
+        x{x}, y{y} {}
 
     // Арифметические операторы
     vec2 operator+(const vec2 &rhs) const {
@@ -53,8 +51,9 @@ struct vec2 {
     }
 
     // Геометрические операции с обработкой ошибок
+
     T length() const {
-        return std::sqrt(x * x + y * y);
+        return std::hypot(x, y);
     }
 
     rs::Option<vec2> normalized() const {
@@ -63,20 +62,11 @@ struct vec2 {
         return vec2{x / len, y / len};
     }
 
-    bool try_normalize() {
-        T len = length();
-        if (len == 0) { return false; }
-        x /= len;
-        y /= len;
-        return true;
-    }
-
     T dot(const vec2 &other) const {
         return x * other.x + y * other.y;
     }
 
-    // Проверка на нулевой вектор
-    bool is_zero() const {
+    bool isZero() const {
         return x == 0 && y == 0;
     }
 };

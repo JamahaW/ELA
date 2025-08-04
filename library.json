@@ -25,7 +25,7 @@
   "frameworks": "*",
   "platforms": "*",
   "export": {
-    "include": "src"
+    "include": "src/ela"
   },
   "dependencies": {
     "Rustify": "https://github.com/JamahaW/Rustify-Lib.git"
