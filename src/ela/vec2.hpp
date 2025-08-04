@@ -9,7 +9,6 @@ namespace ela {
 
 template<typename T>
 struct vec2 {
-    static_assert(std::is_arithmetic_v<T>, "T must be numeric");
 
     using Value = T;
 
