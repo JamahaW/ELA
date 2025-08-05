@@ -1,6 +1,6 @@
 {
   "name": "ELA",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Embedded Linear Algebra library with error handling",
   "keywords": [
     "linear-algebra",
@@ -28,6 +28,6 @@
     "include": "src/ela"
   },
   "dependencies": {
-    "Rustify": "https://github.com/JamahaW/Rustify-Lib.git"
+    "Rustify": "https://github.com/JamahaW/Rustify.git"
   }
 }
