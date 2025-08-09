@@ -6,74 +6,91 @@
 
 namespace ela {
 
-template<typename T> struct vec2 {
+/// Vector 2D
+template<typename T> struct vec2 final {
 
-    using Value = T;
+    /// Scalar type
+    using type = T;
 
     T x, y;
 
+    /// Default constructor
     vec2() :
         x{0}, y{0} {}
 
+    /// Constructor with x and y
     vec2(T x, T y) :
         x{x}, y{y} {}
 
-    // Арифметические операторы
-    vec2 operator+(const vec2 &rhs) const {
-        return {x + rhs.x, y + rhs.y};
+    /// Addition operator
+    vec2 operator+(const vec2 &other) const noexcept {
+        return {x + other.x, y + other.y};
     }
 
-    vec2 operator-(const vec2 &rhs) const {
-        return {x - rhs.x, y - rhs.y};
+    /// Subtraction operator
+    vec2 operator-(const vec2 &other) const noexcept {
+        return {x - other.x, y - other.y};
     }
 
-    vec2 operator*(T scalar) const {
+    /// Scalar multiplication operator
+    vec2 operator*(T scalar) const noexcept {
         return {x * scalar, y * scalar};
     }
 
-    // Безопасное деление с использованием Option
-    rs::Option<vec2> operator/(T scalar) const {
-        if (scalar == 0) { return {}; } // None
+    /// Scalar division operator with option
+    rs::Option<vec2> operator/(T scalar) const noexcept {
+        if (scalar == 0) {
+            return {};
+        }
+
         return vec2{x / scalar, y / scalar};
     }
 
-    // Присваивающие операторы
-    vec2 &operator+=(const vec2 &rhs) {
-        x += rhs.x;
-        y += rhs.y;
+    /// Addition assignment operator
+    vec2 &operator+=(const vec2 &other) noexcept {
+        x += other.x;
+        y += other.y;
         return *this;
     }
 
-    vec2 &operator-=(const vec2 &rhs) {
-        x -= rhs.x;
-        y -= rhs.y;
+    /// Subtraction assignment operator
+    vec2 &operator-=(const vec2 &other) noexcept {
+        x -= other.x;
+        y -= other.y;
         return *this;
     }
 
-    // Геометрические операции с обработкой ошибок
-
-    T length() const {
+    /// Length of the vector
+    T length() const noexcept {
         return std::hypot(x, y);
     }
 
-    rs::Option<vec2> normalized() const {
-        T len = length();
-        if (len == 0) { return {}; } // None
+    /// Normalized vector with option
+    rs::Option<vec2<T>> normalized() const noexcept {
+        const T len = length();
+
+        if (len == 0) {
+            return {};
+        }
+
         return vec2{x / len, y / len};
     }
 
-    T dot(const vec2 &other) const {
+    /// Dot product with another vector
+    T dot(const vec2 &other) const noexcept {
         return x * other.x + y * other.y;
     }
 
-    bool isZero() const {
-        return x == 0 && y == 0;
+    /// Check if vector is zero
+    inline bool isZero() const noexcept {
+        return x == 0 and y == 0;
     }
 };
 
-// Псевдонимы для распространённых типов
-using vec2f = vec2<float>;
-using vec2i = vec2<int>;
-using vec2d = vec2<double>;
+// Type aliases for common types
+
+using vec2f = vec2<float>;  /// Float vector type
+using vec2i = vec2<int>;    /// Integer vector type
+using vec2d = vec2<double>; /// Double vector type
 
 } // namespace ela
