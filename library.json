@@ -1,6 +1,6 @@
 {
   "name": "ELA",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Embedded Linear Algebra library with error handling",
   "keywords": [
     "linear-algebra",
