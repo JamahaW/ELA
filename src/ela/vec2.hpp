@@ -10,7 +10,7 @@ namespace ela {
 template<typename T> struct vec2 final {
 
     /// Scalar type
-    using type = T;
+    using Scalar = T;
 
     T x, y;
 
@@ -37,12 +37,17 @@ template<typename T> struct vec2 final {
         return {x * scalar, y * scalar};
     }
 
-    /// Scalar division operator with option
-    rs::Option<vec2> operator/(T scalar) const noexcept {
+    /// Safe Scalar division operator with option
+    rs::Option<vec2> divChecked(T scalar) const noexcept {
         if (scalar == 0) {
             return {};
         }
 
+        return {vec2{x / scalar, y / scalar}};
+    }
+
+    /// Scalar division operator
+    vec2 operator/(T scalar) const noexcept {
         return vec2{x / scalar, y / scalar};
     }
 
@@ -66,14 +71,14 @@ template<typename T> struct vec2 final {
     }
 
     /// Normalized vector with option
-    rs::Option<vec2<T>> normalized() const noexcept {
+    rs::Option<vec2> normalized() const noexcept {
         const T len = length();
 
         if (len == 0) {
             return {};
         }
 
-        return vec2{x / len, y / len};
+        return {vec2{x / len, y / len}};
     }
 
     /// Dot product with another vector
