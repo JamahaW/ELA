@@ -10,7 +10,7 @@ namespace ela {
 template<typename T> struct vec3 final {
 
     /// Scalar type
-    using type = T;
+    using Scalar = T;
 
     T x, y, z;
 
@@ -23,13 +23,13 @@ template<typename T> struct vec3 final {
         x{x}, y{y}, z{z} {}
 
     /// Addition operator
-    vec3 operator+(const vec3 &rhs) const noexcept {
-        return {x + rhs.x, y + rhs.y, z + rhs.z};
+    vec3 operator+(const vec3 &other) const noexcept {
+        return {x + other.x, y + other.y, z + other.z};
     }
 
     /// Subtraction operator
-    vec3 operator-(const vec3 &rhs) const noexcept {
-        return {x - rhs.x, y - rhs.y, z - rhs.z};
+    vec3 operator-(const vec3 &other) const noexcept {
+        return {x - other.x, y - other.y, z - other.z};
     }
 
     /// Scalar multiplication operator
@@ -37,28 +37,33 @@ template<typename T> struct vec3 final {
         return {x * scalar, y * scalar, z * scalar};
     }
 
-    /// Scalar division operator with option
-    rs::Option<vec3> operator/(T scalar) const noexcept {
+    /// Safe Scalar division operator with option
+    rs::Option<vec3> divChecked(T scalar) const noexcept {
         if (scalar == 0) {
             return {};
         }
 
+        return {vec3{x / scalar, y / scalar, z / scalar}};
+    }
+
+    /// Scalar division operator
+    vec3 operator/(T scalar) const noexcept {
         return vec3{x / scalar, y / scalar, z / scalar};
     }
 
     /// Addition assignment operator
-    vec3 &operator+=(const vec3 &rhs) noexcept {
-        x += rhs.x;
-        y += rhs.y;
-        z += rhs.z;
+    vec3 &operator+=(const vec3 &other) noexcept {
+        x += other.x;
+        y += other.y;
+        z += other.z;
         return *this;
     }
 
     /// Subtraction assignment operator
-    vec3 &operator-=(const vec3 &rhs) noexcept {
-        x -= rhs.x;
-        y -= rhs.y;
-        z -= rhs.z;
+    vec3 &operator-=(const vec3 &other) noexcept {
+        x -= other.x;
+        y -= other.y;
+        z -= other.z;
         return *this;
     }
 
@@ -68,14 +73,14 @@ template<typename T> struct vec3 final {
     }
 
     /// Normalized vector with option
-    rs::Option<vec3<T>> normalized() const noexcept {
+    rs::Option<vec3> normalized() const noexcept {
         const T len = length();
 
         if (len == 0) {
             return {};
         }
 
-        return vec3{x / len, y / len, z / len};
+        return {vec3{x / len, y / len, z / len}};
     }
 
     /// Dot product with another vector
