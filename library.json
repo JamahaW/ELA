@@ -1,6 +1,6 @@
 {
   "name": "ELA",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Embedded Linear Algebra library with error handling",
   "keywords": [
     "linear-algebra",
@@ -13,11 +13,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/JamahaW/ELA.git"
+    "url": "https://github.com/KiraFlux/ELA.git"
   },
   "authors": [
     {
-      "name": "JamahaW",
+      "name": "KiraFlux",
       "email": "kiraflux@duck.com"
     }
   ],
@@ -28,6 +28,6 @@
     "include": "src/ela"
   },
   "dependencies": {
-    "Rustify": "https://github.com/JamahaW/Rustify.git"
+    "Rustify": "https://github.com/KiraFlux/Rustify.git"
   }
 }

@@ -18,8 +18,7 @@ Add to your `platformio.ini`:
 
 ```ini
 lib_deps =
-    https://github.com/JamahaW/Rustify.git
-    https://github.com/your-repo/ELA.git
+    https://github.com/KiraFlux/ELA.git
 ```
 
 ### Minimal Example
@@ -167,7 +166,7 @@ public:
 
 ```ini
 lib_deps =
-    https://github.com/JamahaW/ELA.git
+    https://github.com/KiraFlux/ELA.git
 ```
 
 ## Limitations
